@@ -14,7 +14,6 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -42,11 +41,6 @@ public class Gui extends JFrame {
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu menuConnection;
 	private JMenuItem menuSettings;
-	private JCheckBoxMenuItem menuConnect;
-	
-	private String hostname;
-	private String port;
-	private String local;
 	
 	public Gui(RemoteControllerClient clt) {
 		this.client = clt;
@@ -55,26 +49,12 @@ public class Gui extends JFrame {
 		menuBar.add(menuConnection);
 		menuSettings = new JMenuItem("Settings...");
 		menuConnection.add(menuSettings);
-		menuConnect = new JCheckBoxMenuItem("Connected");
-		menuConnect.setSelected(false);
-		menuConnection.add(menuConnect);
 		setJMenuBar(menuBar);
 		
 		menuSettings.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				openHostSettings();
-			}
-		});
-		
-		menuConnect.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (menuConnect.isSelected()) {
-					client.connect(local, hostname, Integer.parseInt(port));
-				} else {
-					client.disconnect();
-				}
 			}
 		});
 		
@@ -161,9 +141,9 @@ public class Gui extends JFrame {
 	
 	private void openHostSettings() {
 		String url = JOptionPane.showInputDialog(this, "Enter target hostname:port");
-		local = url.substring(0, url.indexOf(';'));
-		hostname = url.substring(url.indexOf(';') + 1, url.indexOf(':'));
-		port = url.substring(url.indexOf(':') + 1);
+		String hostname = url.substring(0, url.indexOf(':'));
+		String port = url.substring(url.indexOf(':') + 1);
+		client.setTargetConnection(hostname, Integer.parseInt(port));
 	}
 	
 }

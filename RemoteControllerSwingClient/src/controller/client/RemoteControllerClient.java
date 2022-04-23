@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.SocketException;
 
 public class RemoteControllerClient {
@@ -14,20 +13,17 @@ public class RemoteControllerClient {
 	private String host;
 	private int port;
 	
-	public void connect(String local, String host, int port) {
+	public RemoteControllerClient() {
 		try {
-			this.host = host;
-			this.port = port;
-			socket = new DatagramSocket(new InetSocketAddress(local, port));
+			socket = new DatagramSocket();
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void disconnect() {
-		if (socket != null) {
-			socket.close();
-		}
+	public void setTargetConnection(String host, int port) {
+		this.host = host;
+		this.port = port;
 	}
 	
 	public void sendMouseMoved(int dx, int dy){

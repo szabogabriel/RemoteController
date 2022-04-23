@@ -3,7 +3,7 @@ package remote;
 public class RuntimeParams {
 	
 	private int port = 60065;
-	private int mouseMoveSleep = 1;
+	private int mouseMoveSleep = 0;
 	private int mouseClickTimeout = 10; // mouse click timeout in milliseconds
 	private int buttonPressTimeout = 10; // keyboard button press timeout in milliseconds
 	private boolean echo = true;

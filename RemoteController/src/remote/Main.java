@@ -21,6 +21,7 @@ public class Main {
 	public Main(String[] args) throws SocketException, AWTException {
 		params = new RuntimeParams(args);
 		socket = new DatagramSocket(params.getPort());
+		System.out.println("Socket created on port " + params.getPort());
 		mouse = new VirtualMouse(params.getMouseClickTimeout(), params.getMouseMoveSleep());
 		keyboard = new VirtualKeyboard(params.getButtonPressTimeout());
 	}

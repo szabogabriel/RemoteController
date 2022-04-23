@@ -23,7 +23,7 @@ Invalid arguments. Valid arguments are the following.
 All the configuration parameters have a default value. So providing nothing will create a server on `localhost:60065`, with timeout values of 10ms and echo enabled.
 
 ## Usage - Client
-Start the client as a Java Swing application. In the configuration, you must enter the following information: `[client-address];[server-address]:[common-port]`. After entering this data you can connect to the server. "Dragging" on the canvas area will move the mouse on the remote site. Entering text into the bottom text field will send the keys entered (including command and backspace). Selecting the checkbox will enable "drag" mode, instead of just moving the mouse.
+Start the client as a Java Swing application. In the configuration, you must enter the following information: `[server-address]:[common-port]`. After entering this data you can connect to the server. "Dragging" on the canvas area will move the mouse on the remote site. Entering text into the bottom text field will send the keys entered (including command and backspace). Selecting the checkbox will enable "drag" mode, instead of just moving the mouse.
 
 ## Tested
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--below line is to create preference category-->
+    <PreferenceCategory android:title="General">
+        <EditTextPreference
+            android:dialogTitle="Target URL dialog title"
+            android:key="urlTarget"
+            android:title="Target URL"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -5,12 +5,13 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 public class RemoteControllerClient {
 	
 	private DatagramSocket socket = null;
 	
-	private String host;
+	private InetAddress host;
 	private int port;
 	
 	public RemoteControllerClient() {
@@ -22,7 +23,11 @@ public class RemoteControllerClient {
 	}
 	
 	public void setTargetConnection(String host, int port) {
-		this.host = host;
+		try {
+			this.host = InetAddress.getByName(host);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
 		this.port = port;
 	}
 	
@@ -68,7 +73,7 @@ public class RemoteControllerClient {
 	
 	private void send(String message){
 		try {
-			socket.send(new DatagramPacket(message.getBytes(), message.getBytes().length, InetAddress.getByName(host), port));
+			socket.send(new DatagramPacket(message.getBytes(), message.getBytes().length, host, port));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
